@@ -1,0 +1,73 @@
+.bd-pin {
+  appearance: none;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: 0;
+  padding: 22px;
+  cursor: pointer;
+  z-index: 4;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: bd-pin-in 0.7s ease-out backwards;
+}
+
+.bd-pin__dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 232, 210, 0.96);
+  box-shadow: 0 0 8px rgba(255, 200, 170, 0.7),
+              0 0 22px rgba(255, 180, 150, 0.45);
+  position: relative;
+  z-index: 2;
+}
+
+.bd-pin__ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 232, 210, 0.7);
+  animation: bd-pin-pulse 1.8s ease-out infinite;
+  z-index: 1;
+}
+
+.bd-pin__label {
+  font-family: 'Cormorant Garamond', 'Source Han Serif SC', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: rgba(248, 234, 210, 0.85);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+// Visited pin: greyed out, no pulse, label crossed
+.bd-pin.is-visited {
+  .bd-pin__dot {
+    background: rgba(180, 170, 160, 0.4);
+    box-shadow: 0 0 4px rgba(120, 100, 90, 0.3);
+  }
+  .bd-pin__ring { animation: none; opacity: 0; }
+  .bd-pin__label {
+    color: rgba(180, 170, 160, 0.45);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+}
+
+@keyframes bd-pin-in {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes bd-pin-pulse {
+  0%   { width: 12px; height: 12px; opacity: 0.9; border-color: rgba(255, 232, 210, 0.85); }
+  100% { width: 56px; height: 56px; opacity: 0;   border-color: rgba(255, 232, 210, 0); }
+}

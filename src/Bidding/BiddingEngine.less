@@ -1,0 +1,45 @@
+.bd-root {
+  position: fixed;
+  inset: 0;
+  background: #06070a;
+  color: #d9d2c2;
+  font-family: 'Cormorant Garamond', 'Source Han Serif SC', 'Songti SC', serif;
+  overflow: hidden;
+}
+
+.bd-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+// The freeze-frame backdrop. End-frame stays mounted, video and overlays float on top.
+.bd-hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bd-progress {
+  position: absolute;
+  top: max(env(safe-area-inset-top), 18px);
+  right: 18px;
+  z-index: 6;
+  font-family: 'Courier Prime', 'IBM Plex Mono', 'Menlo', monospace;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(248, 234, 210, 0.65);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 6px 12px;
+  border-radius: 2px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+}

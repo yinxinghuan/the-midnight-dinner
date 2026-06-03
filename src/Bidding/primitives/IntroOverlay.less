@@ -1,0 +1,92 @@
+.bd-intro {
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  border: 0;
+  background:
+    linear-gradient(170deg,
+      rgba(6, 4, 8, 0.78) 0%,
+      rgba(6, 4, 8, 0.55) 38%,
+      rgba(6, 4, 8, 0.85) 100%);
+  color: rgba(248, 234, 210, 0.96);
+  font-family: 'Cormorant Garamond', 'Source Han Serif SC', 'Songti SC', serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 26px max(env(safe-area-inset-bottom), 56px) 26px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  animation: bd-intro-fade-in 0.6s ease-out;
+}
+
+.bd-intro__inner {
+  text-align: center;
+  max-width: 540px;
+}
+
+.bd-intro__series {
+  font-family: 'Courier Prime', 'IBM Plex Mono', 'Menlo', monospace;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 22px;
+}
+
+.bd-intro__title {
+  font-size: 60px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.0;
+  margin: 0 0 22px 0;
+  color: rgba(252, 232, 210, 1);
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.7);
+}
+
+.bd-intro__rule {
+  width: 96px; height: 1px;
+  background: rgba(248, 234, 210, 0.5);
+  margin: 0 auto 26px auto;
+}
+
+.bd-intro__hint {
+  font-size: 17px;
+  font-style: italic;
+  letter-spacing: 0.025em;
+  line-height: 1.5;
+  opacity: 0.88;
+  max-width: 380px;
+  margin: 0 auto 44px auto;
+}
+
+.bd-intro__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Courier Prime', 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  animation: bd-intro-pulse 2s ease-in-out infinite;
+}
+
+.bd-intro__cta-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 232, 210, 0.95);
+  box-shadow: 0 0 12px rgba(255, 200, 170, 0.7);
+}
+
+@keyframes bd-intro-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes bd-intro-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1);    }
+  50%      { opacity: 0.55; transform: scale(0.97); }
+}

@@ -1,0 +1,113 @@
+.bd-ending {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', 'Source Han Serif SC', 'Songti SC', serif;
+  animation: bd-ending-in 1.6s ease-out;
+  padding: 0 22px;
+}
+
+.bd-ending--sensual {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(60, 16, 22, 0.6), transparent 65%),
+    linear-gradient(170deg, rgba(20, 6, 10, 0.96), rgba(8, 4, 6, 0.98));
+  color: rgba(252, 232, 214, 0.98);
+}
+.bd-ending--horror {
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(18, 10, 28, 0.55), transparent 60%),
+    linear-gradient(170deg, rgba(8, 4, 12, 0.97), rgba(2, 2, 4, 0.99));
+  color: rgba(232, 226, 218, 0.96);
+}
+
+.bd-ending__inner {
+  text-align: center;
+  max-width: 560px;
+}
+
+.bd-ending__label {
+  font-family: 'Courier Prime', 'IBM Plex Mono', 'Menlo', monospace;
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  opacity: 0.42;
+  margin-bottom: 26px;
+}
+
+.bd-ending__title {
+  font-size: 52px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  margin: 0 0 18px 0;
+}
+
+.bd-ending--sensual .bd-ending__title { color: rgba(255, 222, 200, 1); }
+.bd-ending--horror  .bd-ending__title { color: rgba(248, 236, 218, 1); }
+
+.bd-ending__rule {
+  width: 88px;
+  height: 1px;
+  background: rgba(248, 234, 210, 0.42);
+  margin: 0 auto 18px auto;
+}
+
+.bd-ending__tagline {
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 0.025em;
+  line-height: 1.5;
+  opacity: 0.92;
+  margin: 0 auto 26px auto;
+  max-width: 460px;
+}
+
+.bd-ending__type {
+  font-family: 'Courier Prime', 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 44px;
+}
+
+.bd-ending__replay {
+  appearance: none;
+  border: 1px solid rgba(248, 234, 210, 0.62);
+  background: transparent;
+  color: rgba(248, 234, 210, 0.95);
+  font-family: 'Cormorant Garamond', 'Source Han Serif SC', serif;
+  font-style: italic;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  padding: 12px 30px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  &:hover, &:focus-visible {
+    background: rgba(248, 234, 210, 0.12);
+    border-color: rgba(255, 240, 220, 0.95);
+  }
+  &:active { transform: scale(0.985); }
+}
+
+.bd-ending__sig {
+  margin-top: 26px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.32;
+}
+
+@keyframes bd-ending-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
