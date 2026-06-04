@@ -24,6 +24,18 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'spot.you_40': 'the cigarette',
     'spot.you_50': 'the locket',
 
+    // ── Scene chrome ───────────────────────────────────────────────────────
+    'scene.title':     'the midnight dinner',
+    'scene.secondary': 'a private room behind red drapes. a shadow at the far end. five things on your half of the table.',
+    'scene.hint':      'tap each object — each one is yours, at a different age.',
+
+    // ── Subtitles (UI overlay, NOT baked into video) ───────────────────────
+    'subtitle.you_18': "I thought we'd be braver than this.",
+    'subtitle.you_25': "I never told them what you did to me that summer.",
+    'subtitle.you_32': "You were happy for ten months. You don't remember which ten.",
+    'subtitle.you_40': "I don't recognize you.",
+    'subtitle.you_50': "I've been waiting here a long time.",
+
     'ending.title':   'she was always going to be you',
     'ending.tagline': 'The silhouette stood up. She walked the length of the table. By the time she reached you she was you at fifty, and she was smiling.',
 
@@ -45,6 +57,16 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'spot.you_32': '红酒',
     'spot.you_40': '香烟',
     'spot.you_50': '银锁',
+
+    'scene.title':     '午夜的晚餐',
+    'scene.secondary': '红绒幕后的私人餐厅。长桌远端坐着一个剪影。你这一头桌面上散着五样东西。',
+    'scene.hint':      '点开每一样东西 — 每样都属于不同年龄的你。',
+
+    'subtitle.you_18': '我以为我们会勇敢一些。',
+    'subtitle.you_25': '那个夏天你对我做的事, 我一直没告诉过别人。',
+    'subtitle.you_32': '你那时开心过十个月。你都不记得是哪十个月。',
+    'subtitle.you_40': '我不认识你。',
+    'subtitle.you_50': '我在这里等了很久。',
 
     'ending.title':   '她一直都会是你',
     'ending.tagline': '剪影站了起来。她沿着长桌走过来。走到你面前的时候, 已经是五十岁的你, 在笑。',

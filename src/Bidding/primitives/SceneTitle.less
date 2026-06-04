@@ -1,0 +1,80 @@
+.bd-scenetitle {
+  position: absolute;
+  top: 0; left: var(--safe-x, 0); right: var(--safe-x, 0);
+  z-index: 6;
+  pointer-events: none;
+  padding: 18px 22px 24px;
+  // Soft top-down gradient so the scene is not cut off by a hard card edge.
+  background: linear-gradient(180deg,
+    rgba(7,9,10,0.72) 0%,
+    rgba(7,9,10,0.55) 50%,
+    rgba(7,9,10,0.28) 80%,
+    rgba(7,9,10,0)   100%);
+  animation: bd-scenetitle-in 0.9s ease-out 0.3s backwards;
+
+  &__inner {
+    max-width: 540px;
+  }
+
+  &__primary {
+    // Editorial serif italic — elegant headline that feels like cinema, not UI.
+    // Source Han Serif / Noto Serif CJK provide proper Chinese rendering.
+    font-family:
+      'Cormorant Garamond', 'EB Garamond',
+      'Source Han Serif SC', 'Noto Serif CJK SC',
+      'Songti SC', 'STSong', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.22;
+    letter-spacing: 0.005em;
+    color: rgba(245, 230, 200, 0.99);
+    text-shadow:
+      0 2px 12px rgba(0,0,0,0.95),
+      0 0 28px rgba(0,0,0,0.5);
+    margin-bottom: 12px;
+  }
+
+  &__rule {
+    width: 32px; height: 1px;
+    background: rgba(245, 230, 200, 0.55);
+    margin: 0 0 12px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  }
+
+  &__secondary {
+    // Sans-serif body, comfortable line-height for long Chinese sentences.
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+      'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+      'Noto Sans CJK SC', system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
+    color: rgba(245, 230, 200, 0.9);
+    margin-bottom: 10px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.95);
+  }
+
+  &__meta {
+    // A small typewriter "stamp" line — location/time underneath.
+    font-family: 'Courier Prime', 'IBM Plex Mono', 'Menlo', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(245, 230, 200, 0.52);
+    text-shadow: 0 1px 6px rgba(0,0,0,0.95);
+    margin-bottom: 4px;
+  }
+
+  &__examines {
+    // ExamineRow goes here, INSIDE the title block at the bottom.
+    margin-top: 8px;
+    pointer-events: auto;
+  }
+}
+
+@keyframes bd-scenetitle-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

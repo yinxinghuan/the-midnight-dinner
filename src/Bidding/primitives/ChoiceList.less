@@ -1,0 +1,63 @@
+.bd-choices {
+  position: absolute;
+  left: var(--safe-x, 0); right: var(--safe-x, 0); bottom: 0;
+  padding: 10px 12px 14px;
+  z-index: 6;
+  pointer-events: auto;
+  font-family: 'Courier Prime', 'IBM Plex Mono', 'Menlo', monospace;
+  // Smaller gradient — only the bottom ~50% darkens, lets the scene breathe.
+  background: linear-gradient(0deg, rgba(7,9,10,0.86) 0%, rgba(7,9,10,0.45) 65%, transparent 100%);
+
+  &__hint {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(217, 210, 194, 0.5);
+    margin: 0 0 6px 2px;
+  }
+
+  &__list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 5px;
+  }
+
+  &__btn {
+    display: flex; align-items: center;
+    width: 100%; padding: 11px 14px;
+    background: rgba(20, 22, 22, 0.75);
+    border: 1px solid rgba(217, 210, 194, 0.32);
+    color: rgba(217, 210, 194, 0.96);
+    font-family: inherit; font-size: 14.5px; letter-spacing: 0.04em;
+    text-align: left;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.18s ease, border-color 0.18s ease;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+    &:active {
+      background: rgba(40, 42, 42, 0.88);
+      border-color: rgba(245, 230, 200, 0.6);
+    }
+    &:disabled { opacity: 0.32; cursor: default; }
+    &.is-visited {
+      color: rgba(217, 210, 194, 0.42);
+      border-color: rgba(217, 210, 194, 0.14);
+    }
+  }
+
+  &__caret { margin-right: 8px; color: rgba(245, 230, 200, 0.85); font-weight: 600; }
+  &__label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  // ─── Compact mode (5+ choices) — 2 columns ─────────────────────────────
+  &.is-compact {
+    .bd-choices__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 8px;
+    }
+    .bd-choices__btn {
+      padding: 9px 11px;
+      font-size: 12.5px;
+    }
+    .bd-choices__caret { margin-right: 6px; }
+  }
+}

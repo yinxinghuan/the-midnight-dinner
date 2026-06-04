@@ -2,8 +2,11 @@ import { useCallback, useMemo, useState } from 'react';
 import './BiddingEngine.less';
 
 import { CONTENT } from './content';
+import { t } from './i18n';
 import VideoStage from './primitives/VideoStage';
 import HotspotPin from './primitives/HotspotPin';
+import ChoiceList from './primitives/ChoiceList';
+import SceneTitle from './primitives/SceneTitle';
 import EndingCard from './primitives/EndingCard';
 import IntroOverlay from './primitives/IntroOverlay';
 import type { Phase } from './types';
@@ -29,7 +32,7 @@ export default function BiddingEngine() {
   }, []);
 
   const onPinTap = useCallback((spotId: string) => {
-    if (visited.has(spotId)) return; // skip already-seen
+    if (visited.has(spotId)) return; // already seen
     setCurrentSpotId(spotId);
     setPhase('playing-clip');
   }, [visited]);
@@ -40,7 +43,6 @@ export default function BiddingEngine() {
     nowVisited.add(currentSpotId);
     setVisited(nowVisited);
     setCurrentSpotId(null);
-    // Decide next phase based on whether all spots are visited.
     if (nowVisited.size >= CONTENT.spots.length) {
       setPhase('ending');
     } else {
@@ -71,6 +73,14 @@ export default function BiddingEngine() {
     }));
   }, [visited]);
 
+  const choices = useMemo(() => {
+    return CONTENT.spots.map((s) => ({
+      id: s.id,
+      label: t(s.labelKey),
+      visited: visited.has(s.id),
+    }));
+  }, [visited]);
+
   return (
     <div className="bd-root">
       <div className="bd-stage">
@@ -81,9 +91,15 @@ export default function BiddingEngine() {
           draggable={false}
         />
 
-        {/* Hero phase: pins overlaid on the static hero */}
+        {/* Hero phase: chrome + pins + bottom choice list */}
         {phase === 'hero' && (
           <>
+            <SceneTitle
+              cycleKey="hero"
+              primary={t('scene.title')}
+              secondary={t('scene.secondary')}
+              meta={t('ui.progress', { n: visited.size })}
+            />
             {pinView.map((p) => (
               <HotspotPin
                 key={`pin-${p.id}`}
@@ -94,11 +110,15 @@ export default function BiddingEngine() {
                 visited={p.isVisited}
               />
             ))}
-            <div className="bd-progress">{`${visited.size} / ${CONTENT.spots.length}`}</div>
+            <ChoiceList
+              choices={choices}
+              onPick={onPinTap}
+              hint={t('scene.hint')}
+            />
           </>
         )}
 
-        {/* Spot clip playing on top of hero */}
+        {/* Clip playing — subtitle is the i18n string for this spot */}
         {phase === 'playing-clip' && currentSpot && (
           <VideoStage
             key={`clip-${currentSpot.id}`}
@@ -106,11 +126,12 @@ export default function BiddingEngine() {
             posterSrc={heroSrc}
             fallbackImg={heroSrc}
             onEnded={onClipEnded}
-            holdMs={200}
+            holdMs={1200}
+            subtitle={t(`subtitle.${currentSpot.id}`)}
           />
         )}
 
-        {/* Final ending video */}
+        {/* Ending video — silhouette stands and resolves into 50yo */}
         {phase === 'ending' && (
           <VideoStage
             key="ending-video"
@@ -118,7 +139,7 @@ export default function BiddingEngine() {
             posterSrc={endingPosterSrc}
             fallbackImg={endingPosterSrc}
             onEnded={onEndingEnded}
-            holdMs={400}
+            holdMs={1500}
           />
         )}
 
