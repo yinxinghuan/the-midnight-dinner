@@ -24,10 +24,12 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'spot.you_40': 'the cigarette',
     'spot.you_50': 'the locket',
 
-    // ── Scene chrome ───────────────────────────────────────────────────────
-    'scene.title':     'the midnight dinner',
-    'scene.secondary': 'a private room behind red drapes. a shadow at the far end. five things on your half of the table.',
-    'scene.hint':      'tap each object — each one is yours, at a different age.',
+    // ── Title card (idle, before first tap) ────────────────────────────────
+    'title.overline':  '// midnight, the head of the table',
+    'title.main':      'the midnight dinner',
+    'title.sub':       '[  she is at the far end  //  you brought yourself  ]',
+    'hint.firstTap':   'tap an object —',
+    'cue.climax':      'she stands',
 
     // ── Subtitles (UI overlay, NOT baked into video) ───────────────────────
     'subtitle.you_18': "I thought we'd be braver than this.",
@@ -58,9 +60,11 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'spot.you_40': '香烟',
     'spot.you_50': '银锁',
 
-    'scene.title':     '午夜的晚餐',
-    'scene.secondary': '红绒幕后的私人餐厅。长桌远端坐着一个剪影。你这一头桌面上散着五样东西。',
-    'scene.hint':      '点开每一样东西 — 每样都属于不同年龄的你。',
+    'title.overline':  '// 午夜, 桌头',
+    'title.main':      '午夜的晚餐',
+    'title.sub':       '[  她在远端  //  你带来了你自己  ]',
+    'hint.firstTap':   '点一件东西 —',
+    'cue.climax':      '她站起来了',
 
     'subtitle.you_18': '我以为我们会勇敢一些。',
     'subtitle.you_25': '那个夏天你对我做的事, 我一直没告诉过别人。',

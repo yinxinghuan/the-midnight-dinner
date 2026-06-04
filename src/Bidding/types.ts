@@ -1,29 +1,39 @@
-// The Midnight Dinner — V1 framework types.
-//
-// V1 = single hero scene with N hotspots, each hotspot plays one short clip,
-// after all hotspots visited the one ending video plays automatically.
-// No decision tree, no branching, no choice buttons.
+// The Midnight Dinner — V1 framework types (replicant-wake pattern).
 
 export type EndingType = 'sensual' | 'horror';
 
 export interface SpotDef {
   id: string;
-  video: string;         // filename in /public/videos/
-  labelKey: string;      // i18n key for the visible hotspot label / chip
-  // Hotspot pin position on the hero image (image-percent 0-100). Engine
-  // maps to viewport-percent via `-13 + p × 1.26` (see [[platform-safe-area-13pct]]).
-  pinX: number;
-  pinY: number;
+  video: string;          // filename in /public/videos/
+  endFrame: string;       // filename in /public/stills/ — fallback when video errors
+  labelKey: string;       // i18n key for the spot's name (used as aria-label)
+  subtitleKey: string;    // i18n key for the spoken line shown as UI subtitle
+  // Bounding rectangle of the tappable area on the hero (% of container).
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+  // Center of the visual ripple affordance inside the rectangle (% of bbox).
+  affordanceX?: number;
+  affordanceY?: number;
 }
 
 export interface V1ContentDef {
-  hero: string;          // filename in /public/stills/ — the static hero scene
-  endingVideo: string;   // filename in /public/videos/ — plays after all spots
-  endingPoster?: string; // filename in /public/stills/ — optional poster for ending
-  spots: SpotDef[];      // N (default 5) hotspots
+  hero: string;            // filename in /public/stills/
+  endingVideo: string;     // filename in /public/videos/ — plays after all visited
+  endingPoster?: string;   // filename in /public/stills/
+  spots: SpotDef[];
   endingType: EndingType;
   endingTitleKey: string;
   endingTaglineKey: string;
+  endingSubtitleKey?: string;  // optional subtitle for the ending video itself
 }
 
-export type Phase = 'intro' | 'hero' | 'playing-clip' | 'ending' | 'ending-card';
+export type Phase =
+  | 'idle'              // hero is visible + hotspots + title (if no taps yet)
+  | 'playing-clip'      // a hotspot's clip is playing on top of the hero
+  | 'holding-subtitle'  // clip ended, subtitle still up, video fading out
+  | 'climax-ready'      // all 5 visited, waiting for player to tap "showtime"
+  | 'climax-playing'    // ending video is playing
+  | 'revelation'        // ending video done, subtitle still up
+  | 'done';             // can replay
